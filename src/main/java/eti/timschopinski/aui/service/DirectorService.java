@@ -3,7 +3,9 @@ package eti.timschopinski.aui.service;
 import eti.timschopinski.aui.Director;
 import eti.timschopinski.aui.repository.DirectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,5 +31,11 @@ public class DirectorService {
     public void create(Director director) {
         repository.save(director);
     }
+    public void delete(UUID id) {
+        repository.findById(id).ifPresent(repository::delete);
+    }
 
+    public void update(Director updatedDirector) {
+        repository.save(updatedDirector);
+    }
 }
