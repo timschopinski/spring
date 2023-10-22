@@ -16,7 +16,6 @@ import java.util.*;
 @Entity
 @Table(name = "movies")
 public class Movie {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -24,10 +23,8 @@ public class Movie {
     private String title;
     private int releaseYear;
 
-    @OneToMany(mappedBy = "movie")
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private List<Actor> actors;
-
+    @ManyToOne
+    @JoinColumn(name = "director_id")
+    private Director director;
 
 }
