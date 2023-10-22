@@ -1,4 +1,5 @@
 package eti.timschopinski.aui.service;
+import eti.timschopinski.aui.Director;
 import eti.timschopinski.aui.Movie;
 import eti.timschopinski.aui.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,23 +11,35 @@ import java.util.UUID;
 
 @Service
 public class MovieService {
-    private final MovieRepository movieRepository;
+    private final MovieRepository repository;
 
     @Autowired
     public MovieService(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
+        this.repository = movieRepository;
     }
 
-    public List<Movie> getAllMovies() {
-        return movieRepository.findAll();
+    public List<Movie> findAll() {
+        return repository.findAll();
     }
 
-    public Optional<Movie> getMovieById(UUID id) {
-        return movieRepository.findById(id);
+    public Optional<Movie> find(UUID id) {
+        return repository.findById(id);
+    }
+
+    public void create(Movie movie) {
+        repository.save(movie);
+    }
+
+    public void update(Movie movie) {
+        repository.save(movie);
+    }
+
+    public void delete(UUID id) {
+        repository.findById(id).ifPresent(repository::delete);
     }
 
     public List<Movie> getMoviesByDirectorName(String directorName) {
-        return movieRepository.findByDirectorName(directorName);
+        return repository.findByDirectorName(directorName);
     }
 
 }

@@ -11,23 +11,23 @@ import java.util.UUID;
 
 @Service
 public class DirectorService {
-    private final DirectorRepository directorRepository;
+    private final DirectorRepository repository;
 
     @Autowired
     public DirectorService(DirectorRepository directorRepository) {
-        this.directorRepository = directorRepository;
+        this.repository = directorRepository;
     }
 
-    public List<Director> getAllDirectors() {
-        return directorRepository.findAll();
+    public List<Director> findAll() {
+        return repository.findAll();
     }
 
-    public Optional<Director> getDirectorById(UUID id) {
-        return directorRepository.findById(id);
+    public Optional<Director> find(UUID id) {
+        return repository.findById(id);
     }
 
     public void create(Director director) {
-        directorRepository.save(director);
+        repository.save(director);
     }
 
 }
