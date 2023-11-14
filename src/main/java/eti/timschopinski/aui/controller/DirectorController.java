@@ -1,9 +1,11 @@
 package eti.timschopinski.aui.controller;
 
 import eti.timschopinski.aui.Director;
+import eti.timschopinski.aui.dto.CreateDirectorRequest;
 import eti.timschopinski.aui.dto.GetDirectorResponse;
 import eti.timschopinski.aui.dto.GetDirectorsResponse;
 import eti.timschopinski.aui.dto.PutDirectorRequest;
+import eti.timschopinski.aui.function.CreateDirectorWithRequestFunction;
 import eti.timschopinski.aui.function.DirectorToResponseFunction;
 import eti.timschopinski.aui.function.DirectorsToResponseFunction;
 import eti.timschopinski.aui.function.UpdateDirectorWithRequestFunction;
@@ -25,18 +27,22 @@ public class DirectorController {
     private final DirectorsToResponseFunction directorsToResponse;
     private final DirectorToResponseFunction directorToResponse;
     private final UpdateDirectorWithRequestFunction updateDirectorWithRequest;
+    private final CreateDirectorWithRequestFunction createDirectorWithRequest;
 
     @Autowired
     public DirectorController(
             DirectorService service,
             DirectorsToResponseFunction directorsToResponse,
             DirectorToResponseFunction directorToResponse,
-            UpdateDirectorWithRequestFunction updateDirectorWithRequest
+            UpdateDirectorWithRequestFunction updateDirectorWithRequest,
+            CreateDirectorWithRequestFunction createDirectorWithRequest
+
     ) {
         this.service = service;
         this.directorsToResponse = directorsToResponse;
         this.directorToResponse = directorToResponse;
         this.updateDirectorWithRequest = updateDirectorWithRequest;
+        this.createDirectorWithRequest = createDirectorWithRequest;
     }
 
 
@@ -55,6 +61,13 @@ public class DirectorController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public UUID createDirector(@RequestBody CreateDirectorRequest request) {
+        Director newDirector = createDirectorWithRequest.apply(request);
+        service.create(newDirector);
+        return newDirector.getId();
+    }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
