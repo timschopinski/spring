@@ -1,14 +1,8 @@
 package eti.timschopinski.aui.controller;
 
 import eti.timschopinski.aui.Director;
-import eti.timschopinski.aui.dto.CreateDirectorRequest;
-import eti.timschopinski.aui.dto.GetDirectorResponse;
-import eti.timschopinski.aui.dto.GetDirectorsResponse;
-import eti.timschopinski.aui.dto.PutDirectorRequest;
-import eti.timschopinski.aui.function.CreateDirectorWithRequestFunction;
-import eti.timschopinski.aui.function.DirectorToResponseFunction;
-import eti.timschopinski.aui.function.DirectorsToResponseFunction;
-import eti.timschopinski.aui.function.UpdateDirectorWithRequestFunction;
+import eti.timschopinski.aui.dto.*;
+import eti.timschopinski.aui.function.*;
 import eti.timschopinski.aui.service.DirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +22,7 @@ public class DirectorController {
     private final DirectorToResponseFunction directorToResponse;
     private final UpdateDirectorWithRequestFunction updateDirectorWithRequest;
     private final CreateDirectorWithRequestFunction createDirectorWithRequest;
+    private final PatchDirectorWithRequestFunction patchDirectorWithRequest;
 
     @Autowired
     public DirectorController(
@@ -35,7 +30,8 @@ public class DirectorController {
             DirectorsToResponseFunction directorsToResponse,
             DirectorToResponseFunction directorToResponse,
             UpdateDirectorWithRequestFunction updateDirectorWithRequest,
-            CreateDirectorWithRequestFunction createDirectorWithRequest
+            CreateDirectorWithRequestFunction createDirectorWithRequest,
+            PatchDirectorWithRequestFunction patchDirectorWithRequest
 
     ) {
         this.service = service;
@@ -43,6 +39,7 @@ public class DirectorController {
         this.directorToResponse = directorToResponse;
         this.updateDirectorWithRequest = updateDirectorWithRequest;
         this.createDirectorWithRequest = createDirectorWithRequest;
+        this.patchDirectorWithRequest = patchDirectorWithRequest;
     }
 
 
@@ -76,6 +73,19 @@ public class DirectorController {
 
         if (existingDirector.isPresent()) {
             Director updatedDirector = updateDirectorWithRequest.apply(id, request);
+            service.update(updatedDirector);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Director with ID " + id + " not found");
+        }
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void patchDirector(@PathVariable UUID id, @RequestBody PatchDirectorRequest request) {
+        Optional<Director> existingDirector = service.find(id);
+
+        if (existingDirector.isPresent()) {
+            Director updatedDirector = patchDirectorWithRequest.apply(id, request);
             service.update(updatedDirector);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Director with ID " + id + " not found");

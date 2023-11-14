@@ -1,18 +1,17 @@
 package eti.timschopinski.aui.controller;
 
 import eti.timschopinski.aui.dto.*;
-import eti.timschopinski.aui.function.CreateMovieWithRequestFunction;
-import eti.timschopinski.aui.function.UpdateMovieWithRequestFunction;
+import eti.timschopinski.aui.function.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 //import eti.timschopinski.aui.dto.PutMovieRequest;
 import eti.timschopinski.aui.Movie;
-import eti.timschopinski.aui.function.MovieToResponseFunction;
-import eti.timschopinski.aui.function.MoviesToResponseFunction;
 //import eti.timschopinski.aui.function.RequestToMovieFunction;
 import eti.timschopinski.aui.service.MovieService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.io.Console;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -26,6 +25,7 @@ public class MovieController {
     private final MoviesToResponseFunction moviesToResponse;
     private final UpdateMovieWithRequestFunction updateMovieWithRequest;
     private final CreateMovieWithRequestFunction createMovieWithRequest;
+    private final PatchMovieWithRequestFunction patchMovieWithRequest;
 
     @Autowired
     public MovieController(
@@ -33,13 +33,15 @@ public class MovieController {
             MovieToResponseFunction movieToResponse,
             MoviesToResponseFunction moviesToResponse,
             UpdateMovieWithRequestFunction updateMovieWithRequest,
-            CreateMovieWithRequestFunction createMovieWithRequest
+            CreateMovieWithRequestFunction createMovieWithRequest,
+            PatchMovieWithRequestFunction patchMovieWithRequest
     ) {
         this.service = service;
         this.movieToResponse = movieToResponse;
         this.moviesToResponse = moviesToResponse;
         this.updateMovieWithRequest = updateMovieWithRequest;
         this.createMovieWithRequest = createMovieWithRequest;
+        this.patchMovieWithRequest = patchMovieWithRequest;
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -69,6 +71,19 @@ public class MovieController {
             service.update(updatedMovie);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Director with ID " + id + " not found");
+        }
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void patchMovie(@PathVariable UUID id, @RequestBody PatchMovieRequest request) {
+        Optional<Movie> existingMovie = service.find(id);
+
+        if (existingMovie.isPresent()) {
+            Movie updatedMovie = patchMovieWithRequest.apply(id, request);
+            service.update(updatedMovie);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie with ID " + id + " not found");
         }
     }
 
