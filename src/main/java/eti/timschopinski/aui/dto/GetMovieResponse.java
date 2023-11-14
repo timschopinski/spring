@@ -1,7 +1,7 @@
 package eti.timschopinski.aui.dto;
 
+import eti.timschopinski.aui.Director;
 import lombok.*;
-
 import java.util.UUID;
 
 @Getter
@@ -13,19 +13,8 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class GetMovieResponse {
 
-    /**
-     * Unique id identifying the movie.
-     */
     private UUID id;
-
-    /**
-     * Title of the movie.
-     */
     private String title;
-
-    /**
-     * Release year of the movie.
-     */
     private int releaseYear;
 
 }

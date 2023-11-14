@@ -4,8 +4,6 @@ package eti.timschopinski.aui.function;
 import eti.timschopinski.aui.Director;
 import eti.timschopinski.aui.dto.GetDirectorsResponse;
 import org.springframework.stereotype.Component;
-import eti.timschopinski.aui.dto.GetMoviesResponse;
-import eti.timschopinski.aui.Movie;
 
 import java.util.List;
 import java.util.function.Function;

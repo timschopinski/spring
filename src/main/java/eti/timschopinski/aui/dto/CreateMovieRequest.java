@@ -1,13 +1,7 @@
 package eti.timschopinski.aui.dto;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import java.util.UUID;
 
 @Getter
@@ -17,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class PutMovieRequest {
+public class CreateMovieRequest {
 
     private String title;
     private Integer releaseYear;

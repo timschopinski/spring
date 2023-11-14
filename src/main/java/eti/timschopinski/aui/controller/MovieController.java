@@ -1,6 +1,7 @@
 package eti.timschopinski.aui.controller;
 
 import eti.timschopinski.aui.dto.*;
+import eti.timschopinski.aui.function.CreateMovieWithRequestFunction;
 import eti.timschopinski.aui.function.UpdateMovieWithRequestFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,18 +25,21 @@ public class MovieController {
     private final MovieToResponseFunction movieToResponse;
     private final MoviesToResponseFunction moviesToResponse;
     private final UpdateMovieWithRequestFunction updateMovieWithRequest;
+    private final CreateMovieWithRequestFunction createMovieWithRequest;
 
     @Autowired
     public MovieController(
             MovieService service,
             MovieToResponseFunction movieToResponse,
             MoviesToResponseFunction moviesToResponse,
-            UpdateMovieWithRequestFunction updateMovieWithRequest
+            UpdateMovieWithRequestFunction updateMovieWithRequest,
+            CreateMovieWithRequestFunction createMovieWithRequest
     ) {
         this.service = service;
         this.movieToResponse = movieToResponse;
         this.moviesToResponse = moviesToResponse;
         this.updateMovieWithRequest = updateMovieWithRequest;
+        this.createMovieWithRequest = createMovieWithRequest;
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -66,6 +70,13 @@ public class MovieController {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Director with ID " + id + " not found");
         }
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createMovie(@RequestBody CreateMovieRequest request) {
+        Movie newMovie = createMovieWithRequest.apply(request);
+        service.create(newMovie);
     }
 
 

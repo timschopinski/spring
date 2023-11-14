@@ -1,5 +1,4 @@
 package eti.timschopinski.aui.service;
-import eti.timschopinski.aui.Director;
 import eti.timschopinski.aui.Movie;
 import eti.timschopinski.aui.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
