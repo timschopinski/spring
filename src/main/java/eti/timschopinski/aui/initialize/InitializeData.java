@@ -105,4 +105,5 @@ public class InitializeData implements InitializingBean {
             movieService.create(movie9);
         }
     }
+}
 
