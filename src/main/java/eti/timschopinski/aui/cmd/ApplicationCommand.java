@@ -86,6 +86,7 @@ public class ApplicationCommand implements CommandLineRunner {
                 }
 
                 case "quit" -> {
+                    System.exit(1);
                     break mainLoop;
                 }
             }
