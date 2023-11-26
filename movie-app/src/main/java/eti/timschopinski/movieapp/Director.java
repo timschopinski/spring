@@ -1,9 +1,10 @@
-package eti.timschopinski.aui;
-import java.util.*;
+package eti.timschopinski.movieapp;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Table;
 import lombok.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @Builder
 @Getter
