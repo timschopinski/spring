@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -17,10 +16,9 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class PutMovieRequest {
+public class PutDirectorRequest {
 
-    private String title;
-    private Integer releaseYear;
-    private UUID director;
+    private String name;
+    private Integer age;
 
 }

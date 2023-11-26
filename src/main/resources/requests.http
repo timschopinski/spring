@@ -1,0 +1,15 @@
+GET {{DOMAIN}}/api/directors
+GET {{DOMAIN}}/api/directors/<id>
+PUT {{DOMAIN}}/api/directors/<id>
+PATHC {{DOMAIN}}/api/directors/<id>
+DELETE {{DOMAIN}}/api/directors/<id>
+POST {{DOMAIN}}/api/directors/
+
+
+GET {{DOMAIN}}/api/movies
+GET {{DOMAIN}}/api/movies/<id>
+PUT {{DOMAIN}}/api/movies/<id>
+PATHC {{DOMAIN}}/api/movies/<id>
+DELETE {{DOMAIN}}/api/movies/<id>
+POST {{DOMAIN}}/api/movies/
+

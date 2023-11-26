@@ -1,5 +1,6 @@
 package eti.timschopinski.aui.function;
 
+import eti.timschopinski.aui.dto.GetMoviesResponse;
 import org.springframework.stereotype.Component;
 import eti.timschopinski.aui.dto.GetMovieResponse;
 import eti.timschopinski.aui.Movie;

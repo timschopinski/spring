@@ -1,6 +1,5 @@
 package eti.timschopinski.aui.dto;
 
-import eti.timschopinski.aui.Director;
 import lombok.*;
 import java.util.UUID;
 
@@ -11,10 +10,9 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class GetMovieResponse {
+public class GetDirectorResponse {
 
-    private UUID id;
-    private String title;
-    private int releaseYear;
-
+        private UUID id;
+        private String name;
+        private int age;
 }

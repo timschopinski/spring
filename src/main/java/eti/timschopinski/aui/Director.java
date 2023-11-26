@@ -1,5 +1,6 @@
 package eti.timschopinski.aui;
 import java.util.*;
+
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import lombok.*;
@@ -21,7 +22,7 @@ public class Director {
     private String name;
     private int age;
 
-    @OneToMany(mappedBy = "director")
+    @OneToMany(mappedBy = "director", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Movie> directedMovies;

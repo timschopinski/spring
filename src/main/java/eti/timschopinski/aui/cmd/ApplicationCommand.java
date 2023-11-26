@@ -1,11 +1,11 @@
 package eti.timschopinski.aui.cmd;
 
-import eti.timschopinski.aui.controller.DirectorController;
+import eti.timschopinski.aui.controller.DirectorCLIController;
 import eti.timschopinski.aui.dto.PutMovieRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import eti.timschopinski.aui.controller.MovieController;
+import eti.timschopinski.aui.controller.MovieCLIController;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -14,12 +14,12 @@ import java.util.UUID;
 @Component
 public class ApplicationCommand implements CommandLineRunner {
 
-    private final MovieController movieController;
-    private final DirectorController directorController;
+    private final MovieCLIController movieController;
+    private final DirectorCLIController directorController;
 
 
     @Autowired
-    public ApplicationCommand(MovieController movieController, DirectorController directorController) {
+    public ApplicationCommand(MovieCLIController movieController, DirectorCLIController directorController) {
         this.movieController = movieController;
         this.directorController =directorController;
     }
@@ -72,14 +72,13 @@ public class ApplicationCommand implements CommandLineRunner {
                     System.out.print("Enter the director's UUID: ");
                     UUID directorId = UUID.fromString(scanner.nextLine());
 
-
                     try {
                     PutMovieRequest request = PutMovieRequest.builder()
                             .title(title)
                             .releaseYear(releaseYear)
                             .director(directorId)
                             .build();
-                        movieController.putMovie(UUID.randomUUID(), request);
+                        movieController.putMovie(directorId, request);
                         System.out.println("Movie created successfully.");
                     } catch (NoSuchElementException ex) {
                         System.out.println("NOT_FOUND");

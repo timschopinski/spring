@@ -1,8 +1,6 @@
 package eti.timschopinski.aui.dto;
 
-import eti.timschopinski.aui.Director;
 import lombok.*;
-
 import java.util.List;
 import java.util.UUID;
 
