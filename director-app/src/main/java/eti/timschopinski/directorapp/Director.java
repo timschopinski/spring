@@ -16,7 +16,6 @@ import lombok.*;
 @Table(name = "directors")
 public class Director {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String name;

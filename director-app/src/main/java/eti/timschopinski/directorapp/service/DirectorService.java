@@ -37,6 +37,7 @@ public class DirectorService {
     public void delete(UUID id) {
         repository.findById(id).ifPresent(repository::delete);
         eventRepository.delete(id);
+        System.out.println("DONE");
     }
 
     public void update(Director updatedDirector) {

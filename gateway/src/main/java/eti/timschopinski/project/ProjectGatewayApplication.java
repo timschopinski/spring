@@ -1,4 +1,4 @@
-package eti.mecka.franciszek.project;
+package eti.timschopinski.project;
 
 
 import org.springframework.beans.factory.annotation.Value;
@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
+
+import java.io.Console;
 
 @SpringBootApplication
 public class ProjectGatewayApplication {
@@ -18,10 +20,11 @@ public class ProjectGatewayApplication {
 	@Bean
 	public RouteLocator routeLocator(
 			RouteLocatorBuilder builder,
-			@Value("${app.director.url}") String playerUrl,
-			@Value("${app.movie.url}") String professionUrl,
+			@Value("${app.movie.url}") String movieUrl,
+			@Value("${app.director.url}") String directorUrl,
 			@Value("${app.gateway.host}") String host
 	) {
+		System.out.println(directorUrl);
 		return builder
 				.routes()
 				.route("directors", route -> route
@@ -31,7 +34,7 @@ public class ProjectGatewayApplication {
 								"/api/directors/{uuid}",
 								"/api/directors"
 						)
-						.uri(professionUrl)
+						.uri(directorUrl)
 				)
 				.route("movies", route -> route
 						.host(host)
@@ -39,10 +42,10 @@ public class ProjectGatewayApplication {
 						.path(
 								"/api/movies",
 								"/api/movies/**",
-//								"/api/organizations/{uuid}/players",
-//								"/api/organizations/{uuid}/players/**"
+								"/api/directors/{uuid}/movies",
+								"/api/directors/{uuid}/movies/**"
 						)
-						.uri(playerUrl)
+						.uri(movieUrl)
 				)
 				.build();
 	}

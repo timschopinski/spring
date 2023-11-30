@@ -1,14 +1,14 @@
 ### Get all directors
 
-GET http://localhost:8081/api/directors
+GET http://localhost:8083/api/directors
 
 ### Get single director
 
-GET http://localhost:8081/api/directors/eae5bc91-b706-4e7f-a8d4-69c0acb5fce1
+GET http://localhost:8083/api/directors/e9f6c042-bb43-40ad-8ff9-18192901e668
 
 ### Create new director
 
-POST http://localhost:8081/api/directors
+POST http://localhost:8083/api/directors
 Content-Type: application/json
 Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
@@ -19,17 +19,17 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
 ### Delete director.
 
-DELETE http://localhost:8081/api/directors/c56f8191-37c4-437a-afd0-a716b6a3dcf8
+DELETE http://localhost:8083/api/directors/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
 
 ### Get all movies
 
-GET http://localhost:8082/api/movies
+GET http://localhost:8083/api/movies
 
 ### Get single movie
 
-GET http://localhost:8081/api/movies/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+GET http://localhost:8083/api/movies/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
 
 ### Delete movie
 
-DELETE http://localhost:8082/api/movies/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+DELETE http://localhost:8083/api/movies/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
 
