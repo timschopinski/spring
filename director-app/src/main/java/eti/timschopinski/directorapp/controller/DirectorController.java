@@ -96,13 +96,13 @@ public class DirectorController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteDirector(@PathVariable UUID id) {
-        service.find(id)
-                .ifPresentOrElse(
-                profession -> service.delete(id),
-                () -> {
-                    throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-                }
-            );
+        Optional<Director> existingDirector = service.find(id);
+
+        if (existingDirector.isPresent()) {
+            service.delete(id);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Director with ID " + id + " not found");
+        }
     }
 
 

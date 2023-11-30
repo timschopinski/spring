@@ -1,6 +1,7 @@
 package eti.timschopinski.directorapp.service;
 
 import eti.timschopinski.directorapp.Director;
+import eti.timschopinski.directorapp.event.api.DirectorEventRepository;
 import eti.timschopinski.directorapp.repository.DirectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,12 @@ import java.util.UUID;
 @Service
 public class DirectorService {
     private final DirectorRepository repository;
+    private final DirectorEventRepository eventRepository;
 
     @Autowired
-    public DirectorService(DirectorRepository directorRepository) {
-        this.repository = directorRepository;
+    public DirectorService(DirectorRepository repository, DirectorEventRepository eventRepository) {
+        this.repository = repository;
+        this.eventRepository = eventRepository;
     }
 
     public List<Director> findAll() {
@@ -33,6 +36,7 @@ public class DirectorService {
     }
     public void delete(UUID id) {
         repository.findById(id).ifPresent(repository::delete);
+        eventRepository.delete(id);
     }
 
     public void update(Director updatedDirector) {
