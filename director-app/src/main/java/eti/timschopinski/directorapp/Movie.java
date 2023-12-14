@@ -1,5 +1,6 @@
 package eti.timschopinski.directorapp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +17,6 @@ import java.util.UUID;
 @Table(name = "movies")
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String title;
@@ -24,6 +24,7 @@ public class Movie {
 
     @ManyToOne
     @JoinColumn(name = "director_id")
+    @JsonIgnoreProperties("directedMovies")
     private Director director;
 
 }

@@ -1,0 +1,25 @@
+<!-- director-detail.component.html -->
+<article class="text--justified">
+  <header>
+    <h2>{{ director?.name }}</h2>
+  </header>
+
+  <div *ngIf="director">
+    <p><strong>Age:</strong> {{ director.age }}</p>
+
+    <!-- Check if there are movies -->
+    <div *ngIf="director.movies && director.movies.length > 0">
+      <h3>Movies Directed:</h3>
+      <ul>
+        <!-- Iterate over movies -->
+        <li *ngFor="let movie of director.movies">
+          <a [routerLink]="['/movies', movie.id]">{{ movie.title }} ({{ movie.releaseYear }})</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Add more details as needed -->
+  </div>
+
+  <button (click)="goBack()">Go Back</button>
+</article>
