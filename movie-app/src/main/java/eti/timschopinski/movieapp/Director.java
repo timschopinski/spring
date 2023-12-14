@@ -1,9 +1,10 @@
-package eti.timschopinski.aui;
-import java.util.*;
+package eti.timschopinski.movieapp;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Table;
 import lombok.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @Builder
 @Getter
@@ -16,7 +17,6 @@ import lombok.*;
 @Table(name = "directors")
 public class Director {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String name;

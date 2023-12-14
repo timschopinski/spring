@@ -1,0 +1,35 @@
+### Get all directors
+
+GET http://localhost:8083/api/directors
+
+### Get single director
+
+GET http://localhost:8083/api/directors/e9f6c042-bb43-40ad-8ff9-18192901e668
+
+### Create new director
+
+POST http://localhost:8083/api/directors
+Content-Type: application/json
+Authorization: Basic a2V2aW46dXNlcnVzZXI=
+
+{
+  "name": "Mel Gibson",
+  "age": 60
+}
+
+### Delete director.
+
+DELETE http://localhost:8083/api/directors/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+
+### Get all movies
+
+GET http://localhost:8083/api/movies
+
+### Get single movie
+
+GET http://localhost:8083/api/movies/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+
+### Delete movie
+
+DELETE http://localhost:8083/api/movies/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+
