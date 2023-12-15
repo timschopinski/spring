@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Movies } from "../model/movies";
 import { MovieDetails } from "../model/movie-details";
 import { MovieForm } from "../model/movie-form";
+import {DirectorForm} from "../../director/model/director-form";
 
 @Injectable()
 export class MovieService {
@@ -17,6 +18,10 @@ export class MovieService {
 
   getMovie(movieId: string): Observable<MovieDetails> {
     return this.http.get<MovieDetails>(this.backendHost + '/api/movies/' + movieId);
+  }
+
+  createMovie(request: MovieForm): Observable<any> {
+    return this.http.post(this.backendHost + '/api/movies', request);
   }
 
   deleteMovie(movieId: string): Observable<any> {

@@ -16,6 +16,7 @@ import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {DirectorEditComponent} from "./director/view/director-edit/director-edit.component";
 import {DirectorDeleteComponent} from "./director/view/director-delete/director-delte.component";
+import {MovieCreateComponent} from "./movie/view/movie-create/movie-create.component";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {DirectorDeleteComponent} from "./director/view/director-delete/director-
     DirectorDetailComponent,
     DirectorCreateComponent,
     DirectorEditComponent,
-    DirectorDeleteComponent
+    DirectorDeleteComponent,
+    MovieCreateComponent
   ],
   imports: [
     BrowserModule,

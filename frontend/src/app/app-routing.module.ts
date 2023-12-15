@@ -7,6 +7,7 @@ import {DirectorDetailComponent} from "./director/view/director-detail/director-
 import {DirectorCreateComponent} from "./director/view/director-create/director-create.component";
 import {DirectorEditComponent} from "./director/view/director-edit/director-edit.component";
 import {DirectorDeleteComponent} from "./director/view/director-delete/director-delte.component";
+import {MovieCreateComponent} from "./movie/view/movie-create/movie-create.component";
 // import { MovieFormComponent } from './movie-form/movie-form.component';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'directors/:id/edit', component: DirectorEditComponent },
   { path: 'directors/:id/delete', component: DirectorDeleteComponent },
   { path: 'movies/:id', component: MovieDetailComponent },
+  { path: 'movies/create/:id', component: MovieCreateComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' }
 ];
 
