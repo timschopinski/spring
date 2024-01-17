@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MovieListComponent } from '../../../frontend/src/app/movie/view/movie-list/movie-list.component';
+import { MovieListComponent } from './movie/view/movie-list/movie-list.component';
 import {MovieDetailComponent} from "./movie/view/movie-detail/movie-detail.component";
 import {DirectorListComponent} from "./director/view/director-list/director-list.component";
 import {DirectorDetailComponent} from "./director/view/director-detail/director-detail.component";

@@ -1,0 +1,22 @@
+version: '3'
+services:
+  angular-app:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "8080:80"
+
+#  movie-service:
+#    build:
+#      context: ./movie-app
+#      dockerfile: Dockerfile.movie
+#    ports:
+#      - "8081:8081"
+
+  director-service:
+    build:
+      context: ./director-app
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
