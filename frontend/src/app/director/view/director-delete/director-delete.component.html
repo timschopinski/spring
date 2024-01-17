@@ -1,0 +1,11 @@
+<article class="text--justified">
+  <header>
+    <h2>Delete Director</h2>
+  </header>
+
+  <div *ngIf="directorName">
+    <p>Are you sure you want to delete director '{{ directorName }}'?</p>
+    <button (click)="onDelete()">Yes, Delete</button>
+    <button (click)="onCancel()">Cancel</button>
+  </div>
+</article>

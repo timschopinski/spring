@@ -22,6 +22,7 @@ public class CreateDirectorWithRequestFunction implements Function<CreateDirecto
     @Override
     public Director apply(CreateDirectorRequest request) {
         return Director.builder()
+                .id(UUID.randomUUID())
                 .name(request.getName())
                 .age(request.getAge())
                 .build();

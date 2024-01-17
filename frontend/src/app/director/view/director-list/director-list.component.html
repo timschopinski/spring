@@ -1,0 +1,32 @@
+<!-- director-list.component.html -->
+<article class="text--justified">
+  <header>
+    <h2>Directors</h2>
+  </header>
+
+  <table *ngIf="directors">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let director of directors.directors">
+      <td>{{ director.name }}</td>
+      <td>
+        <a [routerLink]="['/directors', director.id]">View</a>
+      </td>
+      <td>
+         <a [routerLink]="['/directors', director.id, 'edit']">Edit</a>
+      </td>
+      <td>
+        <a [routerLink]="['/directors', director.id, 'delete']">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a [routerLink]="['/directors/create']">Create Director</a>
+</article>

@@ -7,6 +7,7 @@ import eti.timschopinski.movieapp.service.DirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
 import java.util.function.Function;
 
 @Component
@@ -21,10 +22,11 @@ public class CreateMovieWithRequestFunction implements Function<CreateMovieReque
 
     @Override
     public Movie apply(CreateMovieRequest request) {
-        Director director = directorService.find(request.getDirector())
-                .orElseThrow(() -> new RuntimeException("Director not found for UUID: " + request.getDirector()));
+        Director director = directorService.find(request.getDirectorId())
+                .orElseThrow(() -> new RuntimeException("Director not found for UUID: " + request.getDirectorId()));
 
         return Movie.builder()
+                .id(UUID.randomUUID())
                 .title(request.getTitle())
                 .releaseYear(request.getReleaseYear())
                 .director(director)

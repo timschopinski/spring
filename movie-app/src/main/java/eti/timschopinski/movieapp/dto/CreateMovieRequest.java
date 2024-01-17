@@ -15,6 +15,6 @@ public class CreateMovieRequest {
 
     private String title;
     private Integer releaseYear;
-    private UUID director;
+    private UUID directorId;
 
 }

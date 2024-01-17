@@ -1,0 +1,15 @@
+<article class="text--justified">
+  <header>
+    <h2>Create Director</h2>
+  </header>
+
+  <form (ngSubmit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" [(ngModel)]="directorName" name="name" required>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" [(ngModel)]="directorAge" name="age" required>
+
+    <button type="submit">Create Director</button>
+  </form>
+</article>

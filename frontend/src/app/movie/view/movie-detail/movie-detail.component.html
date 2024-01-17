@@ -1,0 +1,13 @@
+<!-- movie-detail.component.html -->
+<article class="text--justified">
+  <header>
+    <h2>{{ movie?.title }}</h2>
+  </header>
+
+  <div *ngIf="movie">
+    <p><strong>Release Year:</strong> {{ movie.releaseYear }}</p>
+    <!-- Add more details as needed -->
+  </div>
+
+  <button (click)="goBack()">Go Back</button>
+</article>
