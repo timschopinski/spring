@@ -1,10 +1,10 @@
-package eti.timschopinski.directorapp;
+package eti.timschopinski.project;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DirectorAppApplicationTests {
+class ProjectApplicationTests {
 
 	@Test
 	void contextLoads() {
